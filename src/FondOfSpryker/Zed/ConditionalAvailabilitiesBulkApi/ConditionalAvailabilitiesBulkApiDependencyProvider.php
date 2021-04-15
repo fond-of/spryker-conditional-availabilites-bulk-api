@@ -1,0 +1,15 @@
+<?php
+
+namespace FondOfSpryker\Zed\ConditionalAvailabilitiesBulkApi;
+
+use FondOfSpryker\Zed\ConditionalAvailabilityApi\Dependency\Facade\ConditionalAvailabilityApiToConditionalAvailabilityFacadeBridge;
+use FondOfSpryker\Zed\ConditionalAvailabilityApi\Dependency\QueryContainer\ConditionalAvailabilityApiToApiQueryBuilderQueryContainerBridge;
+use FondOfSpryker\Zed\ConditionalAvailabilityApi\Dependency\QueryContainer\ConditionalAvailabilityApiToApiQueryContainerBridge;
+use Orm\Zed\ConditionalAvailability\Persistence\FosConditionalAvailabilityQuery;
+use Spryker\Zed\Kernel\AbstractBundleDependencyProvider;
+use Spryker\Zed\Kernel\Container;
+
+class ConditionalAvailabilitiesBulkApiDependencyProvider extends AbstractBundleDependencyProvider
+{
+   
+}
