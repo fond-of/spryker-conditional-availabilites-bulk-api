@@ -7,7 +7,7 @@ use Generated\Shared\Transfer\ApiItemTransfer;
 use Spryker\Zed\Kernel\Business\AbstractFacade;
 
 /**
- * @method \FondOfSpryker\Zed\ConditionalAvailabilityApi\Business\ConditionalAvailabilitiesBulkApiBusinessFactory getFactory()
+ * @method \FondOfSpryker\Zed\ConditionalAvailabilitiesBulkApi\Business\ConditionalAvailabilitiesBulkApiBusinessFactory getFactory()
  */
 class ConditionalAvailabilitiesBulkApiFacade extends AbstractFacade implements ConditionalAvailabilitiesBulkApiFacadeInterface
 {
@@ -20,8 +20,9 @@ class ConditionalAvailabilitiesBulkApiFacade extends AbstractFacade implements C
      *
      * @return \Generated\Shared\Transfer\ApiItemTransfer
      */
-    public function addConditionalAvailability(ApiDataTransfer $apiDataTransfer): ApiItemTransfer
+    public function addConditionalAvailabilities(ApiDataTransfer $apiDataTransfer): ApiItemTransfer
     {
+        return $this->getFactory()->createConditionalAvailabilitiesBulkApi()->add($apiDataTransfer);
         return new ApiItemTransfer();
     }
 }
