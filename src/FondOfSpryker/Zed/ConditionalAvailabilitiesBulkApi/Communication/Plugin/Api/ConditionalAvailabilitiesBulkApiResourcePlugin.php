@@ -38,4 +38,53 @@ class ConditionalAvailabilitiesBulkApiResourcePlugin extends AbstractPlugin impl
     {
         return $this->getFacade()->addConditionalAvailabilities($apiDataTransfer);
     }
+
+    /**
+     * @api
+     *
+     * @param int $id
+     *
+     * @return \Generated\Shared\Transfer\ApiItemTransfer
+     */
+    public function get($id): ApiItemTransfer
+    {
+        return new ApiItemTransfer();
+    }
+
+    /**
+     * @api
+     *
+     * @param int $id
+     * @param \Generated\Shared\Transfer\ApiDataTransfer $apiDataTransfer
+     *
+     * @return \Generated\Shared\Transfer\ApiItemTransfer
+     */
+    public function update($id, ApiDataTransfer $apiDataTransfer): ApiItemTransfer
+    {
+        return new ApiItemTransfer();
+    }
+
+    /**
+     * @api
+     *
+     * @param int $id
+     *
+     * @return \Generated\Shared\Transfer\ApiItemTransfer
+     */
+    public function remove($id): ApiItemTransfer
+    {
+        return new ApiItemTransfer();
+    }
+
+    /**
+     * @api
+     *
+     * @param \Generated\Shared\Transfer\ApiRequestTransfer $apiRequestTransfer
+     *
+     * @return \Generated\Shared\Transfer\ApiCollectionTransfer
+     */
+    public function find(ApiRequestTransfer $apiRequestTransfer): ApiCollectionTransfer
+    {
+        return new ApiCollectionTransfer();
+    }
 }

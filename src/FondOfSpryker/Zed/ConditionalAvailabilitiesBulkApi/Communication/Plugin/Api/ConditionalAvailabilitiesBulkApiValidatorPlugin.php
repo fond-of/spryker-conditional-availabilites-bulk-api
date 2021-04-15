@@ -8,9 +8,9 @@ use Spryker\Zed\Api\Dependency\Plugin\ApiValidatorPluginInterface;
 use Spryker\Zed\Kernel\Communication\AbstractPlugin;
 
 /**
- * @method \FondOfSpryker\Zed\ConditionalAvailabilityApi\ConditionalAvailabilitiesBulkApiConfig getConfig()
- * @method \FondOfSpryker\Zed\ConditionalAvailabilityApi\Persistence\ConditionalAvailabilitiesBulkApiQueryContainerInterface getQueryContainer()
- * @method \FondOfSpryker\Zed\ConditionalAvailabilityApi\Business\ConditionalAvailabilitiesBulkApiFacadeInterface getFacade()
+ * @method \FondOfSpryker\Zed\ConditionalAvailabilitiesBulkApi\ConditionalAvailabilitiesBulkApiConfig getConfig()
+ * @method \FondOfSpryker\Zed\ConditionalAvailabilitiesBulkApi\Persistence\ConditionalAvailabilitiesBulkApiQueryContainerInterface getQueryContainer()
+ * @method \FondOfSpryker\Zed\ConditionalAvailabilitiesBulkApi\Business\ConditionalAvailabilitiesBulkApiFacadeInterface getFacade()
  */
 class ConditionalAvailabilitiesBulkApiValidatorPlugin extends AbstractPlugin implements ApiValidatorPluginInterface
 {
@@ -33,6 +33,7 @@ class ConditionalAvailabilitiesBulkApiValidatorPlugin extends AbstractPlugin imp
      */
     public function validate(ApiDataTransfer $apiDataTransfer): array
     {
-        return $this->getFacade()->validate($apiDataTransfer);
+        return [];
+        //return $this->getFacade()->validate($apiDataTransfer);
     }
 }
