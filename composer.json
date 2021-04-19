@@ -6,13 +6,18 @@
     {
       "name": "József Geng",
       "email": "gengjozsef86@gmail.com"
+    },
+    {
+      "name": "Daniel Rose",
+      "email": "daniel-rose@gmx.de"
     }
   ],
   "require": {
     "php": ">=7.3",
     "spryker/api": "^0.1.0 || ^0.2.0 || ^0.3.0",
     "spryker/api-query-builder": "^0.1.0",
-    "fond-of-spryker/conditional-availability": "dev-master"
+    "fond-of-spryker/conditional-availability": "dev-master",
+    "spryker/product": "^6.4.0"
   },
   "require-dev": {
     "fond-of-codeception/spryker": "^1.0",

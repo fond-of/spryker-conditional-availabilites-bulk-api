@@ -8,11 +8,12 @@ use Generated\Shared\Transfer\ConditionalAvailabilityTransfer;
 class ConditionalAvailabilityBulkApiMapper implements ConditionalAvailabilityBulkApiMapperInterface
 {
     protected const DATA_KEY_SKU = 'sku';
+    protected const DATA_KEY_WAREHOUSE_GROUP = 'warehouse_group';
 
     /**
      * @param \Generated\Shared\Transfer\ApiDataTransfer $apiDataTransfer
      *
-     * @return array
+     * @return array<string, array<string, \Generated\Shared\Transfer\ConditionalAvailabilityTransfer>>
      */
     public function mapApiDataTransferToGroupedConditionalAvailabilityTransfers(
         ApiDataTransfer $apiDataTransfer
@@ -20,12 +21,16 @@ class ConditionalAvailabilityBulkApiMapper implements ConditionalAvailabilityBul
         $groupedConditionalAvailabilityTransfers = [];
 
         foreach ($apiDataTransfer->getData() as $item) {
-            if (empty($item[static::DATA_KEY_SKU])) {
+            if (empty($item[static::DATA_KEY_SKU]) || empty($item[static::DATA_KEY_WAREHOUSE_GROUP])) {
                 continue;
             }
 
+            if (empty($groupedConditionalAvailabilityTransfers[$item[static::DATA_KEY_WAREHOUSE_GROUP]])) {
+                $groupedConditionalAvailabilityTransfers[$item[static::DATA_KEY_WAREHOUSE_GROUP]] = [];
+            }
+
             $conditionalAvailabilityTransfer = $this->mapDataToConditionalAvailabilityTransfer($item);
-            $groupedConditionalAvailabilityTransfers[$item[static::DATA_KEY_SKU]] = $conditionalAvailabilityTransfer;
+            $groupedConditionalAvailabilityTransfers[$item[static::DATA_KEY_WAREHOUSE_GROUP]][$item[static::DATA_KEY_SKU]] = $conditionalAvailabilityTransfer;
         }
 
         return $groupedConditionalAvailabilityTransfers;
@@ -34,11 +39,11 @@ class ConditionalAvailabilityBulkApiMapper implements ConditionalAvailabilityBul
     /**
      * @param array $data
      *
-     * @return array
+     * @return \Generated\Shared\Transfer\ConditionalAvailabilityTransfer
      */
     public function mapDataToConditionalAvailabilityTransfer(array $data): ConditionalAvailabilityTransfer
     {
         return (new ConditionalAvailabilityTransfer())
-            ->fromArray($data);
+            ->fromArray($data, true);
     }
 }

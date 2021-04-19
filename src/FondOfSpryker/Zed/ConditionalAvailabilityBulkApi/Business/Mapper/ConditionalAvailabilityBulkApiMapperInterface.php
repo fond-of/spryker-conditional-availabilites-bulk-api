@@ -10,7 +10,7 @@ interface ConditionalAvailabilityBulkApiMapperInterface
     /**
      * @param \Generated\Shared\Transfer\ApiDataTransfer $apiDataTransfer
      *
-     * @return array
+     * @return array<string, array<string, \Generated\Shared\Transfer\ConditionalAvailabilityTransfer>>
      */
     public function mapApiDataTransferToGroupedConditionalAvailabilityTransfers(
         ApiDataTransfer $apiDataTransfer
@@ -19,7 +19,7 @@ interface ConditionalAvailabilityBulkApiMapperInterface
     /**
      * @param array $data
      *
-     * @return array
+     * @return \Generated\Shared\Transfer\ConditionalAvailabilityTransfer
      */
     public function mapDataToConditionalAvailabilityTransfer(
         array $data

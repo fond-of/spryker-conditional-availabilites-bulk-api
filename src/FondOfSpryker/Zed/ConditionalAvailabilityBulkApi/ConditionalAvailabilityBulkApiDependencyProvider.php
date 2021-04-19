@@ -2,15 +2,17 @@
 
 namespace FondOfSpryker\Zed\ConditionalAvailabilityBulkApi;
 
-use FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\Dependency\Facade\ConditionalAvailabilitesBulkApiToConditionalAvailabilityFacadeBridge;
-use FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\Dependency\Facade\ConditionalAvailabilitesBulkApiToProductFacadeBridge;
+use FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\Dependency\Facade\ConditionalAvailabilityBulkApiToConditionalAvailabilityFacadeBridge;
+use FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\Dependency\Facade\ConditionalAvailabilityBulkApiToProductFacadeBridge;
+use FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\Dependency\QueryContainer\ConditionalAvailabilityBulkApiToApiQueryContainerBridge;
 use Spryker\Zed\Kernel\AbstractBundleDependencyProvider;
 use Spryker\Zed\Kernel\Container;
 
-class ConditionalAvailabilitiesBulkApiDependencyProvider extends AbstractBundleDependencyProvider
+class ConditionalAvailabilityBulkApiDependencyProvider extends AbstractBundleDependencyProvider
 {
     public const FACADE_CONDITIONAL_AVAILABILITY = 'FACADE_CONDITIONAL_AVAILABILITY';
     public const FACADE_PRODUCT = 'FACADE_PRODUCT';
+    public const QUERY_CONTAINER_API = 'QUERY_CONTAINER_API';
 
     /**
      * @param \Spryker\Zed\Kernel\Container $container
@@ -24,7 +26,7 @@ class ConditionalAvailabilitiesBulkApiDependencyProvider extends AbstractBundleD
         $container = $this->addConditionalAvailabilityFacade($container);
         $container = $this->addProductFacade($container);
 
-        return $container;
+        return $this->addApiQueryContainer($container);
     }
 
     /**
@@ -35,7 +37,7 @@ class ConditionalAvailabilitiesBulkApiDependencyProvider extends AbstractBundleD
     protected function addConditionalAvailabilityFacade(Container $container): Container
     {
         $container[static::FACADE_CONDITIONAL_AVAILABILITY] = static function (Container $container) {
-            return new ConditionalAvailabilitesBulkApiToConditionalAvailabilityFacadeBridge(
+            return new ConditionalAvailabilityBulkApiToConditionalAvailabilityFacadeBridge(
                 $container->getLocator()->conditionalAvailability()->facade()
             );
         };
@@ -51,8 +53,24 @@ class ConditionalAvailabilitiesBulkApiDependencyProvider extends AbstractBundleD
     protected function addProductFacade(Container $container): Container
     {
         $container[static::FACADE_PRODUCT] = static function (Container $container) {
-            return new ConditionalAvailabilitesBulkApiToProductFacadeBridge(
+            return new ConditionalAvailabilityBulkApiToProductFacadeBridge(
                 $container->getLocator()->product()->facade()
+            );
+        };
+
+        return $container;
+    }
+
+    /**
+     * @param \Spryker\Zed\Kernel\Container $container
+     *
+     * @return \Spryker\Zed\Kernel\Container
+     */
+    protected function addApiQueryContainer(Container $container): Container
+    {
+        $container[static::QUERY_CONTAINER_API] = static function (Container $container) {
+            return new ConditionalAvailabilityBulkApiToApiQueryContainerBridge(
+                $container->getLocator()->api()->queryContainer()
             );
         };
 

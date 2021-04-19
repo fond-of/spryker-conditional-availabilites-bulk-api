@@ -1,4 +1,4 @@
-namespace: fond-of-spryker/conditional-availabilities-api
+namespace: fond-of-spryker/conditional-availability-bulk-api
 
 suites:
   unit:

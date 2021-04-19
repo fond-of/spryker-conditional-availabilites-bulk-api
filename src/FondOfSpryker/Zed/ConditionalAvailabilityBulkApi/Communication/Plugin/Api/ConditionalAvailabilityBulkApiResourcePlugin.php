@@ -2,7 +2,7 @@
 
 namespace FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\Communication\Plugin\Api;
 
-use FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\ConditionalAvailabilitiesBulkApiConfig;
+use FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\ConditionalAvailabilityBulkApiConfig;
 use Generated\Shared\Transfer\ApiCollectionTransfer;
 use Generated\Shared\Transfer\ApiDataTransfer;
 use Generated\Shared\Transfer\ApiItemTransfer;
@@ -11,23 +11,26 @@ use Spryker\Zed\Api\Dependency\Plugin\ApiResourcePluginInterface;
 use Spryker\Zed\Kernel\Communication\AbstractPlugin;
 
 /**
- * @method \FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\Persistence\ConditionalAvailabilitiesBulkApiQueryContainerInterface getQueryContainer()
- * @method \FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\Business\ConditionalAvailabilitiesBulkApiFacadeInterface getFacade()
- * @method \FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\ConditionalAvailabilitiesBulkApiConfig getConfig()
+ * @method \FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\ConditionalAvailabilityBulkApiConfig getConfig()
+ * @method \FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\Business\ConditionalAvailabilityBulkApiFacadeInterface getFacade()
  */
-class ConditionalAvailabilitiesBulkApiResourcePlugin extends AbstractPlugin implements ApiResourcePluginInterface
+class ConditionalAvailabilityBulkApiResourcePlugin extends AbstractPlugin implements ApiResourcePluginInterface
 {
     /**
+     * {@inheritDoc}
+     *
      * @api
      *
      * @return string
      */
     public function getResourceName(): string
     {
-        return ConditionalAvailabilitiesBulkApiConfig::RESOURCE_CONDITIONAL_AVAILABILITIES_BULK;
+        return ConditionalAvailabilityBulkApiConfig::RESOURCE_CONDITIONAL_AVAILABILITIES_BULK;
     }
 
     /**
+     * {@inheritDoc}
+     *
      * @api
      *
      * @param \Generated\Shared\Transfer\ApiDataTransfer $apiDataTransfer
@@ -36,10 +39,12 @@ class ConditionalAvailabilitiesBulkApiResourcePlugin extends AbstractPlugin impl
      */
     public function add(ApiDataTransfer $apiDataTransfer): ApiItemTransfer
     {
-        return $this->getFacade()->addConditionalAvailabilities($apiDataTransfer);
+        return $this->getFacade()->persistConditionalAvailabilities($apiDataTransfer);
     }
 
     /**
+     * {@inheritDoc}
+     *
      * @api
      *
      * @param int $id
@@ -52,6 +57,8 @@ class ConditionalAvailabilitiesBulkApiResourcePlugin extends AbstractPlugin impl
     }
 
     /**
+     * {@inheritDoc}
+     *
      * @api
      *
      * @param int $id
@@ -65,6 +72,8 @@ class ConditionalAvailabilitiesBulkApiResourcePlugin extends AbstractPlugin impl
     }
 
     /**
+     * {@inheritDoc}
+     *
      * @api
      *
      * @param int $id
@@ -77,6 +86,8 @@ class ConditionalAvailabilitiesBulkApiResourcePlugin extends AbstractPlugin impl
     }
 
     /**
+     * {@inheritDoc}
+     *
      * @api
      *
      * @param \Generated\Shared\Transfer\ApiRequestTransfer $apiRequestTransfer
