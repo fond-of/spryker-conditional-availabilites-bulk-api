@@ -23,6 +23,23 @@ class ConditionalAvailabilitesBulkApiToConditionalAvailabilityFacadeBridge imple
         $this->conditionalAvailabilityFacade = $conditionalAvailabilityFacade;
     }
 
+    public function createConditionalAvailability(
+        ConditionalAvailabilityTransfer $conditionalAvailabilityTransfer
+    ): ConditionalAvailabilityResponseTransfer {
+        return $this->conditionalAvailabilityFacade->createConditionalAvailability($conditionalAvailabilityTransfer);
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\ConditionalAvailabilityTransfer $conditionalAvailabilityTransfer
+     *
+     * @return \Generated\Shared\Transfer\ConditionalAvailabilityResponseTransfer
+     */
+    public function updateConditionalAvailability(
+        ConditionalAvailabilityTransfer $conditionalAvailabilityTransfer
+    ): ConditionalAvailabilityResponseTransfer {
+        return $this->conditionalAvailabilityFacade->updateConditionalAvailability($conditionalAvailabilityTransfer);
+    }
+
     /**
      * @param \Generated\Shared\Transfer\ConditionalAvailabilityCriteriaFilterTransfer $conditionalAvailabilityCriteriaFilterTransfer
      *

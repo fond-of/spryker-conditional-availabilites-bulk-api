@@ -8,6 +8,7 @@ use FondOfSpryker\Zed\ConditionalAvailabilitiesBulkApi\Business\Model\Conditiona
 use FondOfSpryker\Zed\ConditionalAvailabilitiesBulkApi\Business\Model\ConditionalAvailabilitiesBulkApiInterface;
 use FondOfSpryker\Zed\ConditionalAvailabilitiesBulkApi\ConditionalAvailabilitiesBulkApiDependencyProvider;
 use FondOfSpryker\Zed\ConditionalAvailabilitiesBulkApi\Dependency\Facade\ConditionalAvailabilitiesApiToConditionalAvailabilityFacadeInterface;
+use FondOfSpryker\Zed\ConditionalAvailabilitiesBulkApi\Dependency\Facade\ConditionalAvailabilitiesApiToProductFacadeInterface;
 use Spryker\Zed\Kernel\Business\AbstractBusinessFactory;
 
 /**
@@ -23,6 +24,7 @@ class ConditionalAvailabilitiesBulkApiBusinessFactory extends AbstractBusinessFa
     {
         return new ConditionalAvailabilitiesBulkApi(
             $this->getConditionalAvailabilityFacade(),
+            $this->getProductFacade(),
             $this->createApiDataTransferMapper()
         );
     }
@@ -35,6 +37,16 @@ class ConditionalAvailabilitiesBulkApiBusinessFactory extends AbstractBusinessFa
     protected function getConditionalAvailabilityFacade(): ConditionalAvailabilitiesApiToConditionalAvailabilityFacadeInterface
     {
         return $this->getProvidedDependency(ConditionalAvailabilitiesBulkApiDependencyProvider::FACADE_CONDITIONAL_AVAILABILITY);
+    }
+
+    /**
+     * @return \FondOfSpryker\Zed\ConditionalAvailabilitiesBulkApi\Dependency\Facade\ConditionalAvailabilitiesApiToProductFacadeInterface
+     *
+     * @throws \Spryker\Zed\Kernel\Exception\Container\ContainerKeyNotFoundException
+     */
+    protected function getProductFacade(): ConditionalAvailabilitiesApiToProductFacadeInterface
+    {
+        return $this->getProvidedDependency(ConditionalAvailabilitiesBulkApiDependencyProvider::FACADE_PRODUCT);
     }
 
     /**
