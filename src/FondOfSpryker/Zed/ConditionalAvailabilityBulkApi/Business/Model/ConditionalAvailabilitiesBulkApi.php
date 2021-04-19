@@ -1,68 +1,46 @@
 <?php
 
-namespace FondOfSpryker\Zed\ConditionalAvailabilitiesBulkApi\Business\Model;
+namespace FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\Business\Model;
 
-use FondOfSpryker\Zed\ConditionalAvailabilitiesBulkApi\Business\Mapper\TransferMapperInterface;
-use FondOfSpryker\Zed\ConditionalAvailabilitiesBulkApi\Dependency\Facade\ConditionalAvailabilitesBulkApiToConditionalAvailabilityFacadeBridge;
-use FondOfSpryker\Zed\ConditionalAvailabilitiesBulkApi\Dependency\Facade\ConditionalAvailabilitiesApiToProductFacadeInterface;
+use FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\Business\Mapper\ConditionalAvailabilityBulkApiMapperInterface;
+use FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\Dependency\Facade\ConditionalAvailabilitesBulkApiToConditionalAvailabilityFacadeBridge;
 use Generated\Shared\Transfer\ApiDataTransfer;
 use Generated\Shared\Transfer\ApiItemTransfer;
-use Generated\Shared\Transfer\ConditionalAvailabilityCollectionTransfer;
 use Generated\Shared\Transfer\ConditionalAvailabilityCriteriaFilterTransfer;
 
 class ConditionalAvailabilitiesBulkApi implements ConditionalAvailabilitiesBulkApiInterface
 {
     /**
-     * @var \FondOfSpryker\Zed\ConditionalAvailabilitiesBulkApi\Dependency\Facade\ConditionalAvailabilitesBulkApiToConditionalAvailabilityFacadeBridge
+     * @var \FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\Dependency\Facade\ConditionalAvailabilitesBulkApiToConditionalAvailabilityFacadeBridge
      */
     protected $conditionalAvailabilityFacade;
 
     /**
-     * @var \FondOfSpryker\Zed\ConditionalAvailabilitiesBulkApi\Dependency\Facade\ConditionalAvailabilitiesApiToProductFacadeInterface
+     * @var \FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\Business\Mapper\ConditionalAvailabilityBulkApiMapperInterface
      */
-    protected $productFacade;
+    protected $conditionalAvailabilityBulkApiMapper;
 
     /**
-     * @var \FondOfSpryker\Zed\ConditionalAvailabilitiesBulkApi\Business\Mapper\TransferMapperInterface
-     */
-    protected $transferMapper;
-
-    /**
-     * ConditionalAvailabilitiesBulkApi constructor.
-     *
-     * @param \FondOfSpryker\Zed\ConditionalAvailabilitiesBulkApi\Dependency\Facade\ConditionalAvailabilitesBulkApiToConditionalAvailabilityFacadeBridge $conditionalAvailabilityFacade
-     * @param \FondOfSpryker\Zed\ConditionalAvailabilitiesBulkApi\Business\Mapper\TransferMapperInterface $transferMapper
+     * @param \FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\Dependency\Facade\ConditionalAvailabilitesBulkApiToConditionalAvailabilityFacadeBridge $conditionalAvailabilityFacade
+     * @param \FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\Business\Mapper\ConditionalAvailabilityBulkApiMapperInterface $conditionalAvailabilityBulkApiMapper
      */
     public function __construct(
         ConditionalAvailabilitesBulkApiToConditionalAvailabilityFacadeBridge $conditionalAvailabilityFacade,
-        ConditionalAvailabilitiesApiToProductFacadeInterface $productFacade,
-        TransferMapperInterface $transferMapper
+        ConditionalAvailabilityBulkApiMapperInterface $conditionalAvailabilityBulkApiMapper
     ) {
         $this->conditionalAvailabilityFacade = $conditionalAvailabilityFacade;
-        $this->productFacade = $productFacade;
-        $this->transferMapper = $transferMapper;
+        $this->conditionalAvailabilityBulkApiMapper = $conditionalAvailabilityBulkApiMapper;
     }
 
     /**
      * @param \Generated\Shared\Transfer\ApiDataTransfer $apiDataTransfer
      *
-     * @throws \Spryker\Zed\Api\Business\Exception\EntityNotSavedException
-     *
      * @return \Generated\Shared\Transfer\ApiItemTransfer
      */
     public function add(ApiDataTransfer $apiDataTransfer): ApiItemTransfer
     {
-        $conditionalAvailabilitiesBulkResponse = new ConditionalA
-        $collection = $this->transferMapper->toTransferCollection($apiDataTransfer->getData());
-
-        if (count($collection) === 0) {
-
-        }
-
-        $skus = [];
-        foreach ($collection as $item) {
-            $skus[] =  $item->getSku();
-        }
+        $groupedConditionalAvailabilityTransfers = $this->conditionalAvailabilityBulkApiMapper
+            ->mapApiDataTransferToGroupedConditionalAvailabilityTransfers($apiDataTransfer);
 
         $productConcretes = $this->productFacade->findProductConcretesBySkus($skus);
 
@@ -73,7 +51,6 @@ class ConditionalAvailabilitiesBulkApi implements ConditionalAvailabilitiesBulkA
                     $productConcretes
                 )
             );
-
         }
 
         $conditionalAvailabilityCriteriaFilterTransfer = (new ConditionalAvailabilityCriteriaFilterTransfer())->setSkus($skus);
@@ -87,19 +64,16 @@ class ConditionalAvailabilitiesBulkApi implements ConditionalAvailabilitiesBulkA
                 ->createConditionalAvailability($conditionalAvailabilityTransfer);
 
             if ($conditionalAvailabilityResponseTransfer->getIsSuccessful()) {
-
             }
-
-
         }
 
         return;
     }
 
-
     /**
      * @param string $sku
      * @param array $productConcretes
+     *
      * @return int|null
      */
     protected function findIdProductConcreteBySkuFromCollection(string $sku, array $productConcretes): ?int
@@ -110,8 +84,4 @@ class ConditionalAvailabilitiesBulkApi implements ConditionalAvailabilitiesBulkA
             }
         }
     }
-
-
-
-
 }

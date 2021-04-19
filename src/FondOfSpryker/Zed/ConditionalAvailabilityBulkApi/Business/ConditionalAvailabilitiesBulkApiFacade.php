@@ -1,13 +1,13 @@
 <?php
 
-namespace FondOfSpryker\Zed\ConditionalAvailabilitiesBulkApi\Business;
+namespace FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\Business;
 
 use Generated\Shared\Transfer\ApiDataTransfer;
 use Generated\Shared\Transfer\ApiItemTransfer;
 use Spryker\Zed\Kernel\Business\AbstractFacade;
 
 /**
- * @method \FondOfSpryker\Zed\ConditionalAvailabilitiesBulkApi\Business\ConditionalAvailabilitiesBulkApiBusinessFactory getFactory()
+ * @method \FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\Business\ConditionalAvailabilitiesBulkApiBusinessFactory getFactory()
  */
 class ConditionalAvailabilitiesBulkApiFacade extends AbstractFacade implements ConditionalAvailabilitiesBulkApiFacadeInterface
 {
@@ -23,6 +23,7 @@ class ConditionalAvailabilitiesBulkApiFacade extends AbstractFacade implements C
     public function addConditionalAvailabilities(ApiDataTransfer $apiDataTransfer): ApiItemTransfer
     {
         return $this->getFactory()->createConditionalAvailabilitiesBulkApi()->add($apiDataTransfer);
+
         return new ApiItemTransfer();
     }
 }

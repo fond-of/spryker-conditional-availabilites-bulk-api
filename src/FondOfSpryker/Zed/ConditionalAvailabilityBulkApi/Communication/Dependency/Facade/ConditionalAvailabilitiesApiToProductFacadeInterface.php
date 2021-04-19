@@ -1,6 +1,6 @@
 <?php
 
-namespace FondOfSpryker\Zed\ConditionalAvailabilitiesBulkApi\Dependency\Facade;
+namespace FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\Dependency\Facade;
 
 interface ConditionalAvailabilitiesApiToProductFacadeInterface
 {

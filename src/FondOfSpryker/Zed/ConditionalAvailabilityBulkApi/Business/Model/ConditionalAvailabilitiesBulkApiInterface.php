@@ -1,6 +1,6 @@
 <?php
 
-namespace FondOfSpryker\Zed\ConditionalAvailabilitiesBulkApi\Business\Model;
+namespace FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\Business\Model;
 
 
 use Generated\Shared\Transfer\ApiDataTransfer;

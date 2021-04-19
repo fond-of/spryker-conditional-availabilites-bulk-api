@@ -1,6 +1,6 @@
 <?php
 
-namespace FondOfSpryker\Zed\ConditionalAvailabilitiesBulkApi\Dependency\Facade;
+namespace FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\Dependency\Facade;
 
 use FondOfSpryker\Zed\ConditionalAvailability\Business\ConditionalAvailabilityFacadeInterface;
 use Generated\Shared\Transfer\ConditionalAvailabilityCollectionTransfer;

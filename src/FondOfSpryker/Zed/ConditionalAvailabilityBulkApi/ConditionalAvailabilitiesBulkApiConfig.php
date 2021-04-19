@@ -1,6 +1,6 @@
 <?php
 
-namespace FondOfSpryker\Zed\ConditionalAvailabilitiesBulkApi;
+namespace FondOfSpryker\Zed\ConditionalAvailabilityBulkApi;
 
 use Spryker\Zed\Kernel\AbstractBundleConfig;
 

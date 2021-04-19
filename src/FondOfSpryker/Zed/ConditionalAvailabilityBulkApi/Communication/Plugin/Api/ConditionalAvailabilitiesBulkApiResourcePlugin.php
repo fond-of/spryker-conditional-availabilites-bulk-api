@@ -1,8 +1,8 @@
 <?php
 
-namespace FondOfSpryker\Zed\ConditionalAvailabilitiesBulkApi\Communication\Plugin\Api;
+namespace FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\Communication\Plugin\Api;
 
-use FondOfSpryker\Zed\ConditionalAvailabilitiesBulkApi\ConditionalAvailabilitiesBulkApiConfig;
+use FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\ConditionalAvailabilitiesBulkApiConfig;
 use Generated\Shared\Transfer\ApiCollectionTransfer;
 use Generated\Shared\Transfer\ApiDataTransfer;
 use Generated\Shared\Transfer\ApiItemTransfer;
@@ -11,9 +11,9 @@ use Spryker\Zed\Api\Dependency\Plugin\ApiResourcePluginInterface;
 use Spryker\Zed\Kernel\Communication\AbstractPlugin;
 
 /**
- * @method \FondOfSpryker\Zed\ConditionalAvailabilitiesBulkApi\Persistence\ConditionalAvailabilitiesBulkApiQueryContainerInterface getQueryContainer()
- * @method \FondOfSpryker\Zed\ConditionalAvailabilitiesBulkApi\Business\ConditionalAvailabilitiesBulkApiFacadeInterface getFacade()
- * @method \FondOfSpryker\Zed\ConditionalAvailabilitiesBulkApi\ConditionalAvailabilitiesBulkApiConfig getConfig()
+ * @method \FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\Persistence\ConditionalAvailabilitiesBulkApiQueryContainerInterface getQueryContainer()
+ * @method \FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\Business\ConditionalAvailabilitiesBulkApiFacadeInterface getFacade()
+ * @method \FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\ConditionalAvailabilitiesBulkApiConfig getConfig()
  */
 class ConditionalAvailabilitiesBulkApiResourcePlugin extends AbstractPlugin implements ApiResourcePluginInterface
 {
