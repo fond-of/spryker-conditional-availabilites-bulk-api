@@ -3,7 +3,7 @@
 namespace FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\Business\Model;
 
 use FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\Business\Mapper\ConditionalAvailabilityBulkApiMapperInterface;
-use FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\Dependency\Facade\ConditionalAvailabilityBulkApiToConditionalAvailabilityFacadeBridge;
+use FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\Dependency\Facade\ConditionalAvailabilityBulkApiToConditionalAvailabilityFacadeInterface;
 use FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\Dependency\Facade\ConditionalAvailabilityBulkApiToProductFacadeInterface;
 use FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\Dependency\QueryContainer\ConditionalAvailabilityBulkApiToApiQueryContainerInterface;
 use Generated\Shared\Transfer\ApiDataTransfer;
@@ -19,7 +19,7 @@ class ConditionalAvailabilityBulkApi implements ConditionalAvailabilityBulkApiIn
     protected $conditionalAvailabilityBulkApiMapper;
 
     /**
-     * @var \FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\Dependency\Facade\ConditionalAvailabilityBulkApiToConditionalAvailabilityFacadeBridge
+     * @var \FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\Dependency\Facade\ConditionalAvailabilityBulkApiToConditionalAvailabilityFacadeInterface
      */
     protected $conditionalAvailabilityFacade;
 
@@ -35,13 +35,13 @@ class ConditionalAvailabilityBulkApi implements ConditionalAvailabilityBulkApiIn
 
     /**
      * @param \FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\Business\Mapper\ConditionalAvailabilityBulkApiMapperInterface $conditionalAvailabilityBulkApiMapper
-     * @param \FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\Dependency\Facade\ConditionalAvailabilityBulkApiToConditionalAvailabilityFacadeBridge $conditionalAvailabilityFacade
+     * @param \FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\Dependency\Facade\ConditionalAvailabilityBulkApiToConditionalAvailabilityFacadeInterface $conditionalAvailabilityFacade
      * @param \FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\Dependency\Facade\ConditionalAvailabilityBulkApiToProductFacadeInterface $productFacade
      * @param \FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\Dependency\QueryContainer\ConditionalAvailabilityBulkApiToApiQueryContainerInterface $apiQueryContainer
      */
     public function __construct(
         ConditionalAvailabilityBulkApiMapperInterface $conditionalAvailabilityBulkApiMapper,
-        ConditionalAvailabilityBulkApiToConditionalAvailabilityFacadeBridge $conditionalAvailabilityFacade,
+        ConditionalAvailabilityBulkApiToConditionalAvailabilityFacadeInterface $conditionalAvailabilityFacade,
         ConditionalAvailabilityBulkApiToProductFacadeInterface $productFacade,
         ConditionalAvailabilityBulkApiToApiQueryContainerInterface $apiQueryContainer
     ) {
@@ -115,7 +115,9 @@ class ConditionalAvailabilityBulkApi implements ConditionalAvailabilityBulkApiIn
 
         foreach ($productConcreteIds as $sku => $productConcreteId) {
             if (empty($conditionalAvailabilityTransfers[$sku])) {
+                // @codeCoverageIgnoreStart
                 continue;
+                // @codeCoverageIgnoreEnd
             }
 
             $conditionalAvailabilityTransfers[$sku]->setFkProduct($productConcreteId);
