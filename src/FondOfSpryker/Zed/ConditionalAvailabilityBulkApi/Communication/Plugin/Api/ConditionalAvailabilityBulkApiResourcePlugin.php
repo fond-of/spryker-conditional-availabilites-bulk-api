@@ -7,6 +7,8 @@ use Generated\Shared\Transfer\ApiCollectionTransfer;
 use Generated\Shared\Transfer\ApiDataTransfer;
 use Generated\Shared\Transfer\ApiItemTransfer;
 use Generated\Shared\Transfer\ApiRequestTransfer;
+use Spryker\Zed\Api\ApiConfig;
+use Spryker\Zed\Api\Business\Exception\ApiDispatchingException;
 use Spryker\Zed\Api\Dependency\Plugin\ApiResourcePluginInterface;
 use Spryker\Zed\Kernel\Communication\AbstractPlugin;
 
@@ -53,7 +55,7 @@ class ConditionalAvailabilityBulkApiResourcePlugin extends AbstractPlugin implem
      */
     public function get($id): ApiItemTransfer
     {
-        return new ApiItemTransfer();
+        throw new ApiDispatchingException('Get action is not implemented yet.', ApiConfig::HTTP_CODE_NOT_FOUND);
     }
 
     /**
@@ -68,7 +70,7 @@ class ConditionalAvailabilityBulkApiResourcePlugin extends AbstractPlugin implem
      */
     public function update($id, ApiDataTransfer $apiDataTransfer): ApiItemTransfer
     {
-        return new ApiItemTransfer();
+        throw new ApiDispatchingException('Update action is not implemented yet.', ApiConfig::HTTP_CODE_NOT_FOUND);
     }
 
     /**
@@ -82,7 +84,7 @@ class ConditionalAvailabilityBulkApiResourcePlugin extends AbstractPlugin implem
      */
     public function remove($id): ApiItemTransfer
     {
-        return new ApiItemTransfer();
+        throw new ApiDispatchingException('Remove action is not implemented yet.', ApiConfig::HTTP_CODE_NOT_FOUND);
     }
 
     /**
@@ -96,6 +98,6 @@ class ConditionalAvailabilityBulkApiResourcePlugin extends AbstractPlugin implem
      */
     public function find(ApiRequestTransfer $apiRequestTransfer): ApiCollectionTransfer
     {
-        return new ApiCollectionTransfer();
+        throw new ApiDispatchingException('Find action is not implemented yet.', ApiConfig::HTTP_CODE_NOT_FOUND);
     }
 }

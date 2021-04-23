@@ -11,7 +11,7 @@ use Spryker\Zed\Kernel\Communication\AbstractPlugin;
  * @method \FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\ConditionalAvailabilityBulkApiConfig getConfig()
  * @method \FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\Business\ConditionalAvailabilityBulkApiFacadeInterface getFacade()
  */
-class ConditionalAvailabilitiyBulkApiValidatorPlugin extends AbstractPlugin implements ApiValidatorPluginInterface
+class ConditionalAvailabilityBulkApiValidatorPlugin extends AbstractPlugin implements ApiValidatorPluginInterface
 {
     /**
      * {@inheritDoc}
