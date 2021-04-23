@@ -62,6 +62,7 @@ class ConditionalAvailabilityBulkApi implements ConditionalAvailabilityBulkApiIn
             ->mapApiDataTransferToGroupedConditionalAvailabilityTransfers($apiDataTransfer);
 
         $conditionalAvailabilityBulkApiResponseTransfer = new ConditionalAvailabilityBulkApiResponseTransfer();
+        $conditionalAvailabilityBulkApiResponseTransfer->setConditionalAvailabilityIds([]);
 
         foreach ($groupedConditionalAvailabilityTransfers as $conditionalAvailabilityTransfers) {
             $this->hydrateConditionalAvailabilitiesWithProductId($conditionalAvailabilityTransfers);
