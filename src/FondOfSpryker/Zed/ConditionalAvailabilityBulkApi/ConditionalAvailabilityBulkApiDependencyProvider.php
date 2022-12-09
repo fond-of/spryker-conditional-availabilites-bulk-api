@@ -10,8 +10,19 @@ use Spryker\Zed\Kernel\Container;
 
 class ConditionalAvailabilityBulkApiDependencyProvider extends AbstractBundleDependencyProvider
 {
+    /**
+     * @var string
+     */
     public const FACADE_CONDITIONAL_AVAILABILITY = 'FACADE_CONDITIONAL_AVAILABILITY';
+
+    /**
+     * @var string
+     */
     public const FACADE_PRODUCT = 'FACADE_PRODUCT';
+
+    /**
+     * @var string
+     */
     public const QUERY_CONTAINER_API = 'QUERY_CONTAINER_API';
 
     /**
@@ -38,7 +49,7 @@ class ConditionalAvailabilityBulkApiDependencyProvider extends AbstractBundleDep
     {
         $container[static::FACADE_CONDITIONAL_AVAILABILITY] = static function (Container $container) {
             return new ConditionalAvailabilityBulkApiToConditionalAvailabilityFacadeBridge(
-                $container->getLocator()->conditionalAvailability()->facade()
+                $container->getLocator()->conditionalAvailability()->facade(),
             );
         };
 
@@ -54,7 +65,7 @@ class ConditionalAvailabilityBulkApiDependencyProvider extends AbstractBundleDep
     {
         $container[static::FACADE_PRODUCT] = static function (Container $container) {
             return new ConditionalAvailabilityBulkApiToProductFacadeBridge(
-                $container->getLocator()->product()->facade()
+                $container->getLocator()->product()->facade(),
             );
         };
 
@@ -70,7 +81,7 @@ class ConditionalAvailabilityBulkApiDependencyProvider extends AbstractBundleDep
     {
         $container[static::QUERY_CONTAINER_API] = static function (Container $container) {
             return new ConditionalAvailabilityBulkApiToApiQueryContainerBridge(
-                $container->getLocator()->api()->queryContainer()
+                $container->getLocator()->api()->queryContainer(),
             );
         };
 

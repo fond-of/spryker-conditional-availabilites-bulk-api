@@ -29,7 +29,7 @@ class ConditionalAvailabilityBulkApiToProductFacadeBridgeTest extends Unit
             ->getMock();
 
         $this->facadeBridge = new ConditionalAvailabilityBulkApiToProductFacadeBridge(
-            $this->productFacadeMock
+            $this->productFacadeMock,
         );
     }
 
@@ -48,7 +48,7 @@ class ConditionalAvailabilityBulkApiToProductFacadeBridgeTest extends Unit
 
         static::assertEquals(
             $ids,
-            $this->facadeBridge->getProductConcreteIdsByConcreteSkus($skus)
+            $this->facadeBridge->getProductConcreteIdsByConcreteSkus($skus),
         );
     }
 }

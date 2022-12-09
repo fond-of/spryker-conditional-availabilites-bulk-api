@@ -26,7 +26,7 @@ class ConditionalAvailabilityBulkApiBusinessFactory extends AbstractBusinessFact
             $this->createConditionalAvailabilityBulkApiMapper(),
             $this->getConditionalAvailabilityFacade(),
             $this->getProductFacade(),
-            $this->getApiQueryContainer()
+            $this->getApiQueryContainer(),
         );
     }
 
@@ -36,7 +36,7 @@ class ConditionalAvailabilityBulkApiBusinessFactory extends AbstractBusinessFact
     protected function getApiQueryContainer(): ConditionalAvailabilityBulkApiToApiQueryContainerInterface
     {
         return $this->getProvidedDependency(
-            ConditionalAvailabilityBulkApiDependencyProvider::QUERY_CONTAINER_API
+            ConditionalAvailabilityBulkApiDependencyProvider::QUERY_CONTAINER_API,
         );
     }
 
@@ -46,7 +46,7 @@ class ConditionalAvailabilityBulkApiBusinessFactory extends AbstractBusinessFact
     protected function getConditionalAvailabilityFacade(): ConditionalAvailabilityBulkApiToConditionalAvailabilityFacadeInterface
     {
         return $this->getProvidedDependency(
-            ConditionalAvailabilityBulkApiDependencyProvider::FACADE_CONDITIONAL_AVAILABILITY
+            ConditionalAvailabilityBulkApiDependencyProvider::FACADE_CONDITIONAL_AVAILABILITY,
         );
     }
 
