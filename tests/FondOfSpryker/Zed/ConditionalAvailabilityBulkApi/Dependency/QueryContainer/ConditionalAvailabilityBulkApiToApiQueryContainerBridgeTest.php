@@ -63,7 +63,7 @@ class ConditionalAvailabilityBulkApiToApiQueryContainerBridgeTest extends Unit
 
         static::assertEquals(
             $this->apiItemTransferMock,
-            $this->facadeBridge->createApiItem($this->abstractTransferMock, null)
+            $this->facadeBridge->createApiItem($this->abstractTransferMock, null),
         );
     }
 }

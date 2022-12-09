@@ -104,28 +104,28 @@ class ConditionalAvailabilityBulkApiDependencyProviderTest extends Unit
             ->willReturnOnConsecutiveCalls(
                 $this->conditionalAvailabilityFacadeMock,
                 $this->productFacadeMock,
-                $this->apiQueryContainerMock
+                $this->apiQueryContainerMock,
             );
 
         $container = $this->dependencyProvider->provideBusinessLayerDependencies(
-            $this->containerMock
+            $this->containerMock,
         );
 
         static::assertEquals($this->containerMock, $container);
 
         static::assertInstanceOf(
             ConditionalAvailabilityBulkApiToConditionalAvailabilityFacadeInterface::class,
-            $container[ConditionalAvailabilityBulkApiDependencyProvider::FACADE_CONDITIONAL_AVAILABILITY]
+            $container[ConditionalAvailabilityBulkApiDependencyProvider::FACADE_CONDITIONAL_AVAILABILITY],
         );
 
         static::assertInstanceOf(
             ConditionalAvailabilityBulkApiToProductFacadeInterface::class,
-            $container[ConditionalAvailabilityBulkApiDependencyProvider::FACADE_PRODUCT]
+            $container[ConditionalAvailabilityBulkApiDependencyProvider::FACADE_PRODUCT],
         );
 
         static::assertInstanceOf(
             ConditionalAvailabilityBulkApiToApiQueryContainerInterface::class,
-            $container[ConditionalAvailabilityBulkApiDependencyProvider::QUERY_CONTAINER_API]
+            $container[ConditionalAvailabilityBulkApiDependencyProvider::QUERY_CONTAINER_API],
         );
     }
 }

@@ -7,7 +7,14 @@ use Generated\Shared\Transfer\ConditionalAvailabilityTransfer;
 
 class ConditionalAvailabilityBulkApiMapper implements ConditionalAvailabilityBulkApiMapperInterface
 {
+    /**
+     * @var string
+     */
     protected const DATA_KEY_SKU = 'sku';
+
+    /**
+     * @var string
+     */
     protected const DATA_KEY_WAREHOUSE_GROUP = 'warehouse_group';
 
     /**

@@ -74,7 +74,7 @@ class ConditionalAvailabilityBulkApiBusinessFactoryTest extends Unit
             ->withConsecutive(
                 [ConditionalAvailabilityBulkApiDependencyProvider::FACADE_CONDITIONAL_AVAILABILITY],
                 [ConditionalAvailabilityBulkApiDependencyProvider::FACADE_PRODUCT],
-                [ConditionalAvailabilityBulkApiDependencyProvider::QUERY_CONTAINER_API]
+                [ConditionalAvailabilityBulkApiDependencyProvider::QUERY_CONTAINER_API],
             )->willReturn(true);
 
         $this->containerMock->expects(static::atLeastOnce())
@@ -82,17 +82,17 @@ class ConditionalAvailabilityBulkApiBusinessFactoryTest extends Unit
             ->withConsecutive(
                 [ConditionalAvailabilityBulkApiDependencyProvider::FACADE_CONDITIONAL_AVAILABILITY],
                 [ConditionalAvailabilityBulkApiDependencyProvider::FACADE_PRODUCT],
-                [ConditionalAvailabilityBulkApiDependencyProvider::QUERY_CONTAINER_API]
+                [ConditionalAvailabilityBulkApiDependencyProvider::QUERY_CONTAINER_API],
             )
             ->willReturnOnConsecutiveCalls(
                 $this->conditionalAvailabilityFacadeMock,
                 $this->productFacadeMock,
-                $this->apiQueryContainerMock
+                $this->apiQueryContainerMock,
             );
 
         static::assertInstanceOf(
             ConditionalAvailabilityBulkApi::class,
-            $this->businessFactory->createConditionalAvailabilitiesBulkApi()
+            $this->businessFactory->createConditionalAvailabilitiesBulkApi(),
         );
     }
 }

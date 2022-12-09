@@ -79,7 +79,7 @@ class ConditionalAvailabilityBulkApiFacadeTest extends Unit
 
         static::assertEquals(
             $this->apiItemTransferMock,
-            $this->facade->persistConditionalAvailabilities($this->apiDataTransferMock)
+            $this->facade->persistConditionalAvailabilities($this->apiDataTransferMock),
         );
     }
 }

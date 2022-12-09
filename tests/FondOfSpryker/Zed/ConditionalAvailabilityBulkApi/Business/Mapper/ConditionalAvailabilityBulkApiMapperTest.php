@@ -50,17 +50,17 @@ class ConditionalAvailabilityBulkApiMapperTest extends Unit
 
         $groupedConditionalAvailabilityTransfers = $this->conditionalAvailabilityBulkApiMapper
             ->mapApiDataTransferToGroupedConditionalAvailabilityTransfers(
-                $this->apiDataTransferMock
+                $this->apiDataTransferMock,
             );
 
         static::assertArrayHasKey($data[0]['warehouse_group'], $groupedConditionalAvailabilityTransfers);
         static::assertArrayHasKey(
             $data[0]['sku'],
-            $groupedConditionalAvailabilityTransfers[$data[0]['warehouse_group']]
+            $groupedConditionalAvailabilityTransfers[$data[0]['warehouse_group']],
         );
         static::assertInstanceOf(
             ConditionalAvailabilityTransfer::class,
-            $groupedConditionalAvailabilityTransfers[$data[0]['warehouse_group']][$data[0]['sku']]
+            $groupedConditionalAvailabilityTransfers[$data[0]['warehouse_group']][$data[0]['sku']],
         );
     }
 }

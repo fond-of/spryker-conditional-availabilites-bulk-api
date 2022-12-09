@@ -46,7 +46,7 @@ class ConditionalAvailabilityBulkApiTest extends Unit
     protected $groupedConditionalAvailabilityTransferMocks;
 
     /**
-     * @var \PHPUnit\Framework\MockObject\MockObject[]|\Generated\Shared\Transfer\ConditionalAvailabilityResponseTransfer[]
+     * @var array<\Generated\Shared\Transfer\ConditionalAvailabilityResponseTransfer>|array<\PHPUnit\Framework\MockObject\MockObject>
      */
     protected $conditionalAvailabilityResponseTransferMocks;
 
@@ -124,7 +124,7 @@ class ConditionalAvailabilityBulkApiTest extends Unit
             $this->conditionalAvailabilityBulkApiMapperMock,
             $this->conditionalAvailabilityFacadeMock,
             $this->productFacadeMock,
-            $this->apiQueryContainerMock
+            $this->apiQueryContainerMock,
         );
     }
 
@@ -160,10 +160,10 @@ class ConditionalAvailabilityBulkApiTest extends Unit
             ->method('persistConditionalAvailability')
             ->withConsecutive(
                 [$this->groupedConditionalAvailabilityTransferMocks['FOO']['BAR-1']],
-                [$this->groupedConditionalAvailabilityTransferMocks['FOO']['BAR-2']]
+                [$this->groupedConditionalAvailabilityTransferMocks['FOO']['BAR-2']],
             )->willReturnOnConsecutiveCalls(
                 $this->conditionalAvailabilityResponseTransferMocks[0],
-                $this->conditionalAvailabilityResponseTransferMocks[1]
+                $this->conditionalAvailabilityResponseTransferMocks[1],
             );
 
         $this->conditionalAvailabilityResponseTransferMocks[0]->expects(static::atLeastOnce())
@@ -189,14 +189,14 @@ class ConditionalAvailabilityBulkApiTest extends Unit
                     static function (ConditionalAvailabilityBulkApiResponseTransfer $transfer) use ($ids) {
                         return count($transfer->getConditionalAvailabilityIds()) === 1
                             && $transfer->getConditionalAvailabilityIds()[0] === $ids['BAR-1'];
-                    }
+                    },
                 ),
-                null
+                null,
             )->willReturn($this->apiItemTransferMock);
 
         static::assertEquals(
             $this->apiItemTransferMock,
-            $this->conditionalAvailabilityBulkApi->persist($this->apiDataTransferMock)
+            $this->conditionalAvailabilityBulkApi->persist($this->apiDataTransferMock),
         );
     }
 }

@@ -5,9 +5,9 @@ namespace FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\Dependency\Facade;
 interface ConditionalAvailabilityBulkApiToProductFacadeInterface
 {
     /**
-     * @param string[] $skus
+     * @param array<string> $skus
      *
-     * @return int[]
+     * @return array<int>
      */
     public function getProductConcreteIdsByConcreteSkus(array $skus): array;
 }

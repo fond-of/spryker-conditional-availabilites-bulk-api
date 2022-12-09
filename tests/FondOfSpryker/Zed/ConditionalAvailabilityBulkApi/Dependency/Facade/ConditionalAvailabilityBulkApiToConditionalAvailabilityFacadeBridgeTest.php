@@ -49,7 +49,7 @@ class ConditionalAvailabilityBulkApiToConditionalAvailabilityFacadeBridgeTest ex
             ->getMock();
 
         $this->facadeBridge = new ConditionalAvailabilityBulkApiToConditionalAvailabilityFacadeBridge(
-            $this->conditionalAvailabilityFacadeMock
+            $this->conditionalAvailabilityFacadeMock,
         );
     }
 
@@ -65,7 +65,7 @@ class ConditionalAvailabilityBulkApiToConditionalAvailabilityFacadeBridgeTest ex
 
         static::assertEquals(
             $this->conditionalAvailabilityResponseTransferMock,
-            $this->facadeBridge->persistConditionalAvailability($this->conditionalAvailabilityTransferMock)
+            $this->facadeBridge->persistConditionalAvailability($this->conditionalAvailabilityTransferMock),
         );
     }
 }

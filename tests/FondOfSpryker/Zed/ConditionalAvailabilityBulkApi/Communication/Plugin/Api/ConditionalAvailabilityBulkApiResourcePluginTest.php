@@ -73,7 +73,7 @@ class ConditionalAvailabilityBulkApiResourcePluginTest extends Unit
     {
         static::assertEquals(
             ConditionalAvailabilityBulkApiConfig::RESOURCE_CONDITIONAL_AVAILABILITIES_BULK,
-            $this->plugin->getResourceName()
+            $this->plugin->getResourceName(),
         );
     }
 
@@ -89,7 +89,7 @@ class ConditionalAvailabilityBulkApiResourcePluginTest extends Unit
 
         static::assertEquals(
             $this->apiItemTransferMock,
-            $this->plugin->add($this->apiDataTransferMock)
+            $this->plugin->add($this->apiDataTransferMock),
         );
     }
 
