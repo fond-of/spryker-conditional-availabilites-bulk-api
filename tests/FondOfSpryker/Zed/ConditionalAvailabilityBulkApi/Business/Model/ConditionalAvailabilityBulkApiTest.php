@@ -100,6 +100,9 @@ class ConditionalAvailabilityBulkApiTest extends Unit
                 'BAR-2' => $this->getMockBuilder(ConditionalAvailabilityTransfer::class)
                     ->disableOriginalConstructor()
                     ->getMock(),
+                'BAR-3' => $this->getMockBuilder(ConditionalAvailabilityTransfer::class)
+                    ->disableOriginalConstructor()
+                    ->getMock(),
             ],
         ];
 
@@ -133,8 +136,8 @@ class ConditionalAvailabilityBulkApiTest extends Unit
      */
     public function testPersist(): void
     {
-        $ids = ['BAR-1' => 1, 'BAR-2' => 2];
-        $skus = ['BAR-1', 'BAR-2'];
+        $ids = ['BAR-1' => 1, 'BAR-2' => 2, 'BAR-3' => null];
+        $skus = array_keys($ids);
 
         $this->conditionalAvailabilityBulkApiMapperMock->expects(static::atLeastOnce())
             ->method('mapApiDataTransferToGroupedConditionalAvailabilityTransfers')
@@ -155,6 +158,23 @@ class ConditionalAvailabilityBulkApiTest extends Unit
             ->method('setFkProduct')
             ->with($ids['BAR-2'])
             ->willReturn($this->groupedConditionalAvailabilityTransferMocks['FOO']['BAR-2']);
+
+        $this->groupedConditionalAvailabilityTransferMocks['FOO']['BAR-3']->expects(static::atLeastOnce())
+            ->method('setFkProduct')
+            ->with($ids['BAR-3'])
+            ->willReturn($this->groupedConditionalAvailabilityTransferMocks['FOO']['BAR-3']);
+
+        $this->groupedConditionalAvailabilityTransferMocks['FOO']['BAR-1']->expects(static::atLeastOnce())
+            ->method('getFkProduct')
+            ->willReturn($ids['BAR-1']);
+
+        $this->groupedConditionalAvailabilityTransferMocks['FOO']['BAR-2']->expects(static::atLeastOnce())
+            ->method('getFkProduct')
+            ->willReturn($ids['BAR-2']);
+
+        $this->groupedConditionalAvailabilityTransferMocks['FOO']['BAR-3']->expects(static::atLeastOnce())
+            ->method('getFkProduct')
+            ->willReturn($ids['BAR-3']);
 
         $this->conditionalAvailabilityFacadeMock->expects(static::atLeastOnce())
             ->method('persistConditionalAvailability')

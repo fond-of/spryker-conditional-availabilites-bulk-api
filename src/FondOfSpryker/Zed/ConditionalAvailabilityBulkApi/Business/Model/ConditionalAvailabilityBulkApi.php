@@ -91,6 +91,10 @@ class ConditionalAvailabilityBulkApi implements ConditionalAvailabilityBulkApiIn
     protected function persistConditionalAvailability(
         ConditionalAvailabilityTransfer $conditionalAvailabilityTransfer
     ): ?int {
+        if ($conditionalAvailabilityTransfer->getFkProduct() === null) {
+            return null;
+        }
+
         $conditionalAvailabilityResponse = $this->conditionalAvailabilityFacade
             ->persistConditionalAvailability($conditionalAvailabilityTransfer);
 
