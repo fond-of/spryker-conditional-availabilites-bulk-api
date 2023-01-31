@@ -3,9 +3,9 @@
 namespace FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\Business\Model;
 
 use FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\Business\Mapper\ConditionalAvailabilityBulkApiMapperInterface;
+use FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\Dependency\Facade\ConditionalAvailabilityBulkApiToApiFacadeInterface;
 use FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\Dependency\Facade\ConditionalAvailabilityBulkApiToConditionalAvailabilityFacadeInterface;
 use FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\Dependency\Facade\ConditionalAvailabilityBulkApiToProductFacadeInterface;
-use FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\Dependency\QueryContainer\ConditionalAvailabilityBulkApiToApiQueryContainerInterface;
 use Generated\Shared\Transfer\ApiDataTransfer;
 use Generated\Shared\Transfer\ApiItemTransfer;
 use Generated\Shared\Transfer\ConditionalAvailabilityBulkApiResponseTransfer;
@@ -29,7 +29,7 @@ class ConditionalAvailabilityBulkApi implements ConditionalAvailabilityBulkApiIn
     protected $productFacade;
 
     /**
-     * @var \FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\Dependency\QueryContainer\ConditionalAvailabilityBulkApiToApiQueryContainerInterface
+     * @var \FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\Dependency\Facade\ConditionalAvailabilityBulkApiToApiFacadeInterface
      */
     protected $apiQueryContainer;
 
@@ -37,13 +37,13 @@ class ConditionalAvailabilityBulkApi implements ConditionalAvailabilityBulkApiIn
      * @param \FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\Business\Mapper\ConditionalAvailabilityBulkApiMapperInterface $conditionalAvailabilityBulkApiMapper
      * @param \FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\Dependency\Facade\ConditionalAvailabilityBulkApiToConditionalAvailabilityFacadeInterface $conditionalAvailabilityFacade
      * @param \FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\Dependency\Facade\ConditionalAvailabilityBulkApiToProductFacadeInterface $productFacade
-     * @param \FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\Dependency\QueryContainer\ConditionalAvailabilityBulkApiToApiQueryContainerInterface $apiQueryContainer
+     * @param \FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\Dependency\Facade\ConditionalAvailabilityBulkApiToApiFacadeInterface $apiQueryContainer
      */
     public function __construct(
         ConditionalAvailabilityBulkApiMapperInterface $conditionalAvailabilityBulkApiMapper,
         ConditionalAvailabilityBulkApiToConditionalAvailabilityFacadeInterface $conditionalAvailabilityFacade,
         ConditionalAvailabilityBulkApiToProductFacadeInterface $productFacade,
-        ConditionalAvailabilityBulkApiToApiQueryContainerInterface $apiQueryContainer
+        ConditionalAvailabilityBulkApiToApiFacadeInterface $apiQueryContainer
     ) {
         $this->conditionalAvailabilityBulkApiMapper = $conditionalAvailabilityBulkApiMapper;
         $this->conditionalAvailabilityFacade = $conditionalAvailabilityFacade;

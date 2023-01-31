@@ -4,14 +4,14 @@ namespace FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\Communication\Plugin\
 
 use Codeception\Test\Unit;
 use FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\ConditionalAvailabilityBulkApiConfig;
-use Generated\Shared\Transfer\ApiDataTransfer;
+use Generated\Shared\Transfer\ApiRequestTransfer;
 
 class ConditionalAvailabilityBulkApiValidatorPluginTest extends Unit
 {
     /**
-     * @var \Generated\Shared\Transfer\ApiDataTransfer|\PHPUnit\Framework\MockObject\MockObject
+     * @var \Generated\Shared\Transfer\ApiRequestTransfer|\PHPUnit\Framework\MockObject\MockObject
      */
-    protected $apiDataTransferMock;
+    protected $apiRequestTransferMock;
 
     /**
      * @var \FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\Communication\Plugin\Api\ConditionalAvailabilityBulkApiValidatorPlugin
@@ -25,7 +25,7 @@ class ConditionalAvailabilityBulkApiValidatorPluginTest extends Unit
     {
         parent::_before();
 
-        $this->apiDataTransferMock = $this->getMockBuilder(ApiDataTransfer::class)
+        $this->apiRequestTransferMock = $this->getMockBuilder(ApiRequestTransfer::class)
             ->disableOriginalConstructor()
             ->getMock();
 
@@ -49,7 +49,7 @@ class ConditionalAvailabilityBulkApiValidatorPluginTest extends Unit
     public function testValidate(): void
     {
         static::assertEmpty(
-            $this->plugin->validate($this->apiDataTransferMock),
+            $this->plugin->validate($this->apiRequestTransferMock),
         );
     }
 }
