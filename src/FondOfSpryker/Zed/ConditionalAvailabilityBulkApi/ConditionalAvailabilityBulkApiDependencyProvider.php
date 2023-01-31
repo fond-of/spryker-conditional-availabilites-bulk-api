@@ -2,9 +2,9 @@
 
 namespace FondOfSpryker\Zed\ConditionalAvailabilityBulkApi;
 
+use FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\Dependency\Facade\ConditionalAvailabilityBulkApiToApiFacadeBridge;
 use FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\Dependency\Facade\ConditionalAvailabilityBulkApiToConditionalAvailabilityFacadeBridge;
 use FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\Dependency\Facade\ConditionalAvailabilityBulkApiToProductFacadeBridge;
-use FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\Dependency\QueryContainer\ConditionalAvailabilityBulkApiToApiQueryContainerBridge;
 use Spryker\Zed\Kernel\AbstractBundleDependencyProvider;
 use Spryker\Zed\Kernel\Container;
 
@@ -23,7 +23,7 @@ class ConditionalAvailabilityBulkApiDependencyProvider extends AbstractBundleDep
     /**
      * @var string
      */
-    public const QUERY_CONTAINER_API = 'QUERY_CONTAINER_API';
+    public const FACADE_API = 'FACADE_API';
 
     /**
      * @param \Spryker\Zed\Kernel\Container $container
@@ -37,7 +37,7 @@ class ConditionalAvailabilityBulkApiDependencyProvider extends AbstractBundleDep
         $container = $this->addConditionalAvailabilityFacade($container);
         $container = $this->addProductFacade($container);
 
-        return $this->addApiQueryContainer($container);
+        return $this->addApiFacade($container);
     }
 
     /**
@@ -77,11 +77,11 @@ class ConditionalAvailabilityBulkApiDependencyProvider extends AbstractBundleDep
      *
      * @return \Spryker\Zed\Kernel\Container
      */
-    protected function addApiQueryContainer(Container $container): Container
+    protected function addApiFacade(Container $container): Container
     {
-        $container[static::QUERY_CONTAINER_API] = static function (Container $container) {
-            return new ConditionalAvailabilityBulkApiToApiQueryContainerBridge(
-                $container->getLocator()->api()->queryContainer(),
+        $container[static::FACADE_API] = static function (Container $container) {
+            return new ConditionalAvailabilityBulkApiToApiFacadeBridge(
+                $container->getLocator()->api()->facade(),
             );
         };
 

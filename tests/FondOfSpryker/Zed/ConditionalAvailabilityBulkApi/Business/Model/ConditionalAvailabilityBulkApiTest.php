@@ -4,9 +4,9 @@ namespace FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\Business\Model;
 
 use Codeception\Test\Unit;
 use FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\Business\Mapper\ConditionalAvailabilityBulkApiMapperInterface;
+use FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\Dependency\Facade\ConditionalAvailabilityBulkApiToApiFacadeInterface;
 use FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\Dependency\Facade\ConditionalAvailabilityBulkApiToConditionalAvailabilityFacadeBridge;
 use FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\Dependency\Facade\ConditionalAvailabilityBulkApiToProductFacadeInterface;
-use FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\Dependency\QueryContainer\ConditionalAvailabilityBulkApiToApiQueryContainerInterface;
 use Generated\Shared\Transfer\ApiDataTransfer;
 use Generated\Shared\Transfer\ApiItemTransfer;
 use Generated\Shared\Transfer\ConditionalAvailabilityBulkApiResponseTransfer;
@@ -31,7 +31,7 @@ class ConditionalAvailabilityBulkApiTest extends Unit
     protected $productFacadeMock;
 
     /**
-     * @var \FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\Dependency\QueryContainer\ConditionalAvailabilityBulkApiToApiQueryContainerInterface|\PHPUnit\Framework\MockObject\MockObject
+     * @var \FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\Dependency\Facade\ConditionalAvailabilityBulkApiToApiFacadeInterface|\PHPUnit\Framework\MockObject\MockObject
      */
     protected $apiQueryContainerMock;
 
@@ -84,7 +84,7 @@ class ConditionalAvailabilityBulkApiTest extends Unit
             ->disableOriginalConstructor()
             ->getMock();
 
-        $this->apiQueryContainerMock = $this->getMockBuilder(ConditionalAvailabilityBulkApiToApiQueryContainerInterface::class)
+        $this->apiQueryContainerMock = $this->getMockBuilder(ConditionalAvailabilityBulkApiToApiFacadeInterface::class)
             ->disableOriginalConstructor()
             ->getMock();
 

@@ -7,9 +7,9 @@ use FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\Business\Mapper\Conditional
 use FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\Business\Model\ConditionalAvailabilityBulkApi;
 use FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\Business\Model\ConditionalAvailabilityBulkApiInterface;
 use FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\ConditionalAvailabilityBulkApiDependencyProvider;
+use FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\Dependency\Facade\ConditionalAvailabilityBulkApiToApiFacadeInterface;
 use FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\Dependency\Facade\ConditionalAvailabilityBulkApiToConditionalAvailabilityFacadeInterface;
 use FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\Dependency\Facade\ConditionalAvailabilityBulkApiToProductFacadeInterface;
-use FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\Dependency\QueryContainer\ConditionalAvailabilityBulkApiToApiQueryContainerInterface;
 use Spryker\Zed\Kernel\Business\AbstractBusinessFactory;
 
 /**
@@ -31,12 +31,12 @@ class ConditionalAvailabilityBulkApiBusinessFactory extends AbstractBusinessFact
     }
 
     /**
-     * @return \FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\Dependency\QueryContainer\ConditionalAvailabilityBulkApiToApiQueryContainerInterface
+     * @return \FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\Dependency\Facade\ConditionalAvailabilityBulkApiToApiFacadeInterface
      */
-    protected function getApiQueryContainer(): ConditionalAvailabilityBulkApiToApiQueryContainerInterface
+    protected function getApiQueryContainer(): ConditionalAvailabilityBulkApiToApiFacadeInterface
     {
         return $this->getProvidedDependency(
-            ConditionalAvailabilityBulkApiDependencyProvider::QUERY_CONTAINER_API,
+            ConditionalAvailabilityBulkApiDependencyProvider::FACADE_API,
         );
     }
 

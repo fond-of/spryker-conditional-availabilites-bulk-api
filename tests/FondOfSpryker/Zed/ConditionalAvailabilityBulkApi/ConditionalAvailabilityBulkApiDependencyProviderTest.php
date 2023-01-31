@@ -4,11 +4,11 @@ namespace FondOfSpryker\Zed\ConditionalAvailabilityBulkApi;
 
 use Codeception\Test\Unit;
 use FondOfSpryker\Zed\ConditionalAvailability\Business\ConditionalAvailabilityFacadeInterface;
+use FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\Dependency\Facade\ConditionalAvailabilityBulkApiToApiFacadeInterface;
 use FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\Dependency\Facade\ConditionalAvailabilityBulkApiToConditionalAvailabilityFacadeInterface;
 use FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\Dependency\Facade\ConditionalAvailabilityBulkApiToProductFacadeInterface;
-use FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\Dependency\QueryContainer\ConditionalAvailabilityBulkApiToApiQueryContainerInterface;
 use Spryker\Shared\Kernel\BundleProxy;
-use Spryker\Zed\Api\Persistence\ApiQueryContainerInterface;
+use Spryker\Zed\Api\Business\ApiFacadeInterface;
 use Spryker\Zed\Kernel\Container;
 use Spryker\Zed\Kernel\Locator;
 use Spryker\Zed\Product\Business\ProductFacadeInterface;
@@ -41,9 +41,9 @@ class ConditionalAvailabilityBulkApiDependencyProviderTest extends Unit
     protected $productFacadeMock;
 
     /**
-     * @var \PHPUnit\Framework\MockObject\MockObject|\Spryker\Zed\Api\Persistence\ApiQueryContainerInterface
+     * @var \PHPUnit\Framework\MockObject\MockObject|\Spryker\Zed\Api\Business\ApiFacadeInterface
      */
-    protected $apiQueryContainerMock;
+    protected $apiFacadeMock;
 
     /**
      * @var \FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\ConditionalAvailabilityBulkApiDependencyProvider
@@ -77,7 +77,7 @@ class ConditionalAvailabilityBulkApiDependencyProviderTest extends Unit
             ->disableOriginalConstructor()
             ->getMock();
 
-        $this->apiQueryContainerMock = $this->getMockBuilder(ApiQueryContainerInterface::class)
+        $this->apiFacadeMock = $this->getMockBuilder(ApiFacadeInterface::class)
             ->disableOriginalConstructor()
             ->getMock();
 
@@ -100,11 +100,11 @@ class ConditionalAvailabilityBulkApiDependencyProviderTest extends Unit
 
         $this->bundleProxyMock->expects(static::atLeastOnce())
             ->method('__call')
-            ->withConsecutive(['facade'], ['facade'], ['queryContainer'])
+            ->withConsecutive(['facade'], ['facade'], ['facade'])
             ->willReturnOnConsecutiveCalls(
                 $this->conditionalAvailabilityFacadeMock,
                 $this->productFacadeMock,
-                $this->apiQueryContainerMock,
+                $this->apiFacadeMock,
             );
 
         $container = $this->dependencyProvider->provideBusinessLayerDependencies(
@@ -124,8 +124,8 @@ class ConditionalAvailabilityBulkApiDependencyProviderTest extends Unit
         );
 
         static::assertInstanceOf(
-            ConditionalAvailabilityBulkApiToApiQueryContainerInterface::class,
-            $container[ConditionalAvailabilityBulkApiDependencyProvider::QUERY_CONTAINER_API],
+            ConditionalAvailabilityBulkApiToApiFacadeInterface::class,
+            $container[ConditionalAvailabilityBulkApiDependencyProvider::FACADE_API],
         );
     }
 }

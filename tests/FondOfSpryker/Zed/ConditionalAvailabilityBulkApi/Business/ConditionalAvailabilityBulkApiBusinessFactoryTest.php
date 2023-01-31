@@ -5,9 +5,9 @@ namespace FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\Business;
 use Codeception\Test\Unit;
 use FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\Business\Model\ConditionalAvailabilityBulkApi;
 use FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\ConditionalAvailabilityBulkApiDependencyProvider;
+use FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\Dependency\Facade\ConditionalAvailabilityBulkApiToApiFacadeInterface;
 use FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\Dependency\Facade\ConditionalAvailabilityBulkApiToConditionalAvailabilityFacadeBridge;
 use FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\Dependency\Facade\ConditionalAvailabilityBulkApiToProductFacadeInterface;
-use FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\Dependency\QueryContainer\ConditionalAvailabilityBulkApiToApiQueryContainerInterface;
 use Spryker\Zed\Kernel\Container;
 
 class ConditionalAvailabilityBulkApiBusinessFactoryTest extends Unit
@@ -28,7 +28,7 @@ class ConditionalAvailabilityBulkApiBusinessFactoryTest extends Unit
     protected $productFacadeMock;
 
     /**
-     * @var \PHPUnit\Framework\MockObject\MockObject|\FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\Dependency\QueryContainer\ConditionalAvailabilityBulkApiToApiQueryContainerInterface
+     * @var \PHPUnit\Framework\MockObject\MockObject|\FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\Dependency\Facade\ConditionalAvailabilityBulkApiToApiFacadeInterface
      */
     protected $apiQueryContainerMock;
 
@@ -56,7 +56,7 @@ class ConditionalAvailabilityBulkApiBusinessFactoryTest extends Unit
             ->disableOriginalConstructor()
             ->getMock();
 
-        $this->apiQueryContainerMock = $this->getMockBuilder(ConditionalAvailabilityBulkApiToApiQueryContainerInterface::class)
+        $this->apiQueryContainerMock = $this->getMockBuilder(ConditionalAvailabilityBulkApiToApiFacadeInterface::class)
             ->disableOriginalConstructor()
             ->getMock();
 
@@ -74,7 +74,7 @@ class ConditionalAvailabilityBulkApiBusinessFactoryTest extends Unit
             ->withConsecutive(
                 [ConditionalAvailabilityBulkApiDependencyProvider::FACADE_CONDITIONAL_AVAILABILITY],
                 [ConditionalAvailabilityBulkApiDependencyProvider::FACADE_PRODUCT],
-                [ConditionalAvailabilityBulkApiDependencyProvider::QUERY_CONTAINER_API],
+                [ConditionalAvailabilityBulkApiDependencyProvider::FACADE_API],
             )->willReturn(true);
 
         $this->containerMock->expects(static::atLeastOnce())
@@ -82,7 +82,7 @@ class ConditionalAvailabilityBulkApiBusinessFactoryTest extends Unit
             ->withConsecutive(
                 [ConditionalAvailabilityBulkApiDependencyProvider::FACADE_CONDITIONAL_AVAILABILITY],
                 [ConditionalAvailabilityBulkApiDependencyProvider::FACADE_PRODUCT],
-                [ConditionalAvailabilityBulkApiDependencyProvider::QUERY_CONTAINER_API],
+                [ConditionalAvailabilityBulkApiDependencyProvider::FACADE_API],
             )
             ->willReturnOnConsecutiveCalls(
                 $this->conditionalAvailabilityFacadeMock,

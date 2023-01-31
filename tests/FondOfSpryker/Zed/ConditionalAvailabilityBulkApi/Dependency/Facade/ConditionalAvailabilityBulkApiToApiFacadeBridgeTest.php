@@ -1,18 +1,18 @@
 <?php
 
-namespace FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\Dependency\QueryContainer;
+namespace FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\Dependency\Facade;
 
 use Codeception\Test\Unit;
 use Generated\Shared\Transfer\ApiItemTransfer;
 use Spryker\Shared\Kernel\Transfer\AbstractTransfer;
-use Spryker\Zed\Api\Persistence\ApiQueryContainer;
+use Spryker\Zed\Api\Business\ApiFacadeInterface;
 
-class ConditionalAvailabilityBulkApiToApiQueryContainerBridgeTest extends Unit
+class ConditionalAvailabilityBulkApiToApiFacadeBridgeTest extends Unit
 {
     /**
-     * @var \PHPUnit\Framework\MockObject\MockObject|\Spryker\Zed\Api\Persistence\ApiQueryContainer
+     * @var \PHPUnit\Framework\MockObject\MockObject|\Spryker\Zed\Api\Business\ApiFacadeInterface
      */
-    protected $apiQueryContainerMock;
+    protected $facadeMock;
 
     /**
      * @var \PHPUnit\Framework\MockObject\MockObject|\Spryker\Shared\Kernel\Transfer\AbstractTransfer
@@ -25,9 +25,9 @@ class ConditionalAvailabilityBulkApiToApiQueryContainerBridgeTest extends Unit
     private $apiItemTransferMock;
 
     /**
-     * @var \FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\Dependency\QueryContainer\ConditionalAvailabilityBulkApiToApiQueryContainerBridge
+     * @var \FondOfSpryker\Zed\ConditionalAvailabilityBulkApi\Dependency\Facade\ConditionalAvailabilityBulkApiToApiFacadeBridge
      */
-    protected $facadeBridge;
+    protected $bridge;
 
     /**
      * @return void
@@ -36,7 +36,7 @@ class ConditionalAvailabilityBulkApiToApiQueryContainerBridgeTest extends Unit
     {
         parent::_before();
 
-        $this->apiQueryContainerMock = $this->getMockBuilder(ApiQueryContainer::class)
+        $this->facadeMock = $this->getMockBuilder(ApiFacadeInterface::class)
             ->disableOriginalConstructor()
             ->getMock();
 
@@ -48,7 +48,7 @@ class ConditionalAvailabilityBulkApiToApiQueryContainerBridgeTest extends Unit
             ->disableOriginalConstructor()
             ->getMock();
 
-        $this->facadeBridge = new ConditionalAvailabilityBulkApiToApiQueryContainerBridge($this->apiQueryContainerMock);
+        $this->bridge = new ConditionalAvailabilityBulkApiToApiFacadeBridge($this->facadeMock);
     }
 
     /**
@@ -56,14 +56,14 @@ class ConditionalAvailabilityBulkApiToApiQueryContainerBridgeTest extends Unit
      */
     public function testCreateApiItem(): void
     {
-        $this->apiQueryContainerMock->expects(static::atLeastOnce())
+        $this->facadeMock->expects(static::atLeastOnce())
             ->method('createApiItem')
             ->with($this->abstractTransferMock, null)
             ->willReturn($this->apiItemTransferMock);
 
         static::assertEquals(
             $this->apiItemTransferMock,
-            $this->facadeBridge->createApiItem($this->abstractTransferMock, null),
+            $this->bridge->createApiItem($this->abstractTransferMock, null),
         );
     }
 }
